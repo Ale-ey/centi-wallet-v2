@@ -74,7 +74,7 @@ export function CentiTextField({
             style={styles.eyeBtn}
             onPress={() => setPasswordVisible((v) => !v)}>
             <MaterialIcons
-              name={passwordVisible ? 'visibility-off' : 'visibility'}
+              name={passwordVisible ? 'visibility' : 'visibility-off'}
               size={22}
               color={centiColors.primary}
             />
