@@ -19,6 +19,8 @@ export default function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const canSignIn = email.trim().length > 0 && password.length > 0;
+
   return (
     <SafeScreen>
       <KeyboardFormScroll keyboardOpenBottomPadding={120}>
@@ -74,9 +76,8 @@ export default function LoginScreen() {
             <CentiButton
               title="Sign in"
               variant="primary"
-              onPress={() => {
-                /* wire to auth → router.replace('/dashboard') */
-              }}
+              disabled={!canSignIn}
+              onPress={() => router.replace('/dashboard')}
             />
             <View style={styles.gap} />
             <CentiButton

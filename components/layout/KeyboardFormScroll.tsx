@@ -1,13 +1,6 @@
 import type { ReactNode } from 'react';
 import { useEffect, useState } from 'react';
-import {
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type Props = {
@@ -73,9 +66,8 @@ export function KeyboardFormScroll({
           paddingTop: keyboardOpen ? 12 : 0,
           paddingBottom: keyboardOpen ? keyboardOpenBottomPadding + keyboardHeight : 40,
         }}>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-          <View className="w-full">{children}</View>
-        </TouchableWithoutFeedback>
+        {/* Plain View: TouchableWithoutFeedback here often eats taps on Android so nested buttons (e.g. Sign in) never fire. */}
+        <View className="w-full">{children}</View>
       </ScrollView>
     </KeyboardAvoidingView>
   );

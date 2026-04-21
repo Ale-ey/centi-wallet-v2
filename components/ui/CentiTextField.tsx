@@ -42,7 +42,8 @@ export function CentiTextField({
 }: CentiTextFieldProps) {
   const isPassword = fieldType === 'password';
   const isEmail = fieldType === 'email';
-  const [passwordVisible, setPasswordVisible] = useState(false);
+  /** true = characters hidden (bullets); false = plain text */
+  const [isPasswordMasked, setIsPasswordMasked] = useState(true);
   const toggleOn = isPassword && showPasswordToggle !== false;
 
   const commonInputProps = {
@@ -65,16 +66,16 @@ export function CentiTextField({
           <TextInput
             {...commonInputProps}
             style={[styles.inputInner, style]}
-            secureTextEntry={!passwordVisible}
+            secureTextEntry={isPasswordMasked}
           />
           <Pressable
             accessibilityRole="button"
-            accessibilityLabel={passwordVisible ? 'Hide password' : 'Show password'}
+            accessibilityLabel={isPasswordMasked ? 'Show password' : 'Hide password'}
             hitSlop={12}
             style={styles.eyeBtn}
-            onPress={() => setPasswordVisible((v) => !v)}>
+            onPress={() => setIsPasswordMasked((m) => !m)}>
             <MaterialIcons
-              name={passwordVisible ? 'visibility' : 'visibility-off'}
+              name={isPasswordMasked ? 'visibility' : 'visibility-off'}
               size={22}
               color={centiColors.primary}
             />

@@ -31,8 +31,8 @@ export default function SignupScreen() {
     }
     setShowMismatch(false);
     if (!acceptedTerms) return;
-    /* TODO: call your sign-up API */
-    Alert.alert('CENTI', 'Account creation will be wired to your backend next.');
+    /* TODO: call your sign-up API — for now any valid form goes to the wallet */
+    router.replace('/dashboard');
   }
 
   function openTerms() {

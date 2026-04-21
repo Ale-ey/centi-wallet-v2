@@ -1,16 +1,26 @@
-import { Stack } from 'expo-router';
+import { Tabs } from 'expo-router';
+
+import { DashboardTabBar } from '@/components/dashboard/DashboardTabBar';
 
 /**
- * Layout for signed-in app area: `/dashboard`, `/dashboard/...`.
- * Later you can add guards (only allow if logged in) in root or here.
+ * Wallet area: Home → Send → QR (center) → Receive → Profile.
  */
 export default function DashboardLayout() {
   return (
-    <Stack
+    <Tabs
+      tabBar={(props) => <DashboardTabBar {...props} />}
       screenOptions={{
         headerShown: false,
-        animation: 'slide_from_right',
-      }}
-    />
+      }}>
+      <Tabs.Screen name="index" options={{ title: 'Home' }} />
+      <Tabs.Screen name="send" options={{ title: 'Send' }} />
+      <Tabs.Screen name="qr" options={{ title: 'Scan' }} />
+      <Tabs.Screen name="receive" options={{ title: 'Receive' }} />
+      <Tabs.Screen name="profile" options={{ title: 'Profile' }} />
+      <Tabs.Screen name="remittances" options={{ href: null }} />
+      <Tabs.Screen name="exchange" options={{ href: null }} />
+      <Tabs.Screen name="shopping" options={{ href: null }} />
+      <Tabs.Screen name="history" options={{ href: null }} />
+    </Tabs>
   );
 }
